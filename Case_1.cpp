@@ -25,22 +25,6 @@ string itc_num_to_str(long long n) {
     return res;
 }
 
-string itc_slice_str(string str, int start, int end) {
-    string res;
-    if (start > end) return str;
-    if (end < str.size()) {
-        for (int i = (start - 1); i <= (end - 1); i++) {
-            res += str[i];
-        }
-    }
-    else {
-        for (int i = (start - 1); i <= str.size(); i++) {
-            res += str[i];
-        }
-    }
-    return res;
-}
-
 int main()
 {
     long long n, k, chk;
@@ -52,11 +36,19 @@ int main()
         n--;
     }
     n = itc_bin_num(n);
-    string n1;
+    string n1, res;
     n1 = itc_num_to_str(n);
-    if (n1.size() > k) n1 = itc_slice_str(n1, 1, k);
+    if (n1.size() > k) {
+        res = "";
+        int i = n1.size();
+        while (res.size() != k) {
+            res = n1[i] + res;
+            i--;
+        }
+        n1 = res;
+    }
     else {
-        while (n1.size() < k) {
+        while (res.size() < k) {
             n1 = '0' + n1;
         }
     }
