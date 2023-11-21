@@ -36,19 +36,13 @@ int main()
         n--;
     }
     n = itc_bin_num(n);
-    string n1, res;
+    string n1;
     n1 = itc_num_to_str(n);
     if (n1.size() > k) {
-        res = "";
-        int i = n1.size();
-        while (res.size() != k) {
-            res = n1[i] + res;
-            i--;
-        }
-        n1 = res;
+        n1 = n1.erase(n1.size() - k, n1.size());
     }
-    else {
-        while (res.size() < k) {
+    if (n1.size() < k){
+        while (n1.size() < k) {
             n1 = '0' + n1;
         }
     }
